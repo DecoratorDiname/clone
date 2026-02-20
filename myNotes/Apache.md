@@ -51,40 +51,9 @@ docker run -d --name my-apache -p 8081:80 httpd
 
 Пояснение:
 - docker pull httpd:latest — скачивает последний официальный образ Apache.
+![alt text](image-4.png)
 - docker rm -f my-apache — удаляет существующий контейнер с тем же именем (если нужно).
+![alt text](image-5.png)
 - docker run -d --name my-apache -p 8081:80 httpd — запускает новый контейнер.
+![alt text](image-6.png)
 
-## 5. Оформление шагов в Markdown с поддержкой скриншотов
-
-- Сделайте скриншоты на каждом шаге:
-  1) вывод команды clone/создания репозитория.
-  2) вывод содержимого каталога после создания файла Apache.md.
-  3) выполнение docker run с именем контейнера и портом.
-  4) результат в браузере (страница http://localhost:8081).
-  5) результаты docker ps и docker logs, если есть проблемы.
-
-- Вставьте скриншоты в файл Apache.md в виде изображений (Markdown-формат).
-
-Пример вставки изображений в Markdown:
-```markdown
-![Шаг 3: запуск контейнера](screenshots/step3_run.png)
-```
-
-Совет: храните изображения в подпапке screenshots рядом с Apache.md, например:
-- myNotes/screenshots/step3_run.png
-- myNotes/screenshots/step4_browser.png
-- myNotes/screenshots/step5_logs.png
-
-## 6. Отправка ссылки на удалённый репозиторий
-
-После завершения:
-- Сделайте коммиты и запушьте в удалённый репозиторий.
-
-```bash
-git add myNotes/Apache.md
-git add myNotes/screenshots/*
-git commit -m "Документация: запуск Apache в Docker из готового образа"
-git push origin main  # или другая ветка
-```
-
-- Сгенерируйте ссылку на удалённый репозиторий и отправьте преподавателю.
