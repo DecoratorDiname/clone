@@ -55,7 +55,10 @@ docker run -d --name my-apache -p 8081:80 httpd
 ![alt text](image-4.png)
 
 - docker rm -f my-apache — удаляет существующий контейнер с тем же именем (если нужно).
+
 ![alt text](image-5.png)
+
 - docker run -d --name my-apache -p 8081:80 httpd — запускает новый контейнер.
+
 ![alt text](image-6.png)
 
