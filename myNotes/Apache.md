@@ -27,6 +27,7 @@ http://localhost:8081
 ```
 
 - Вы должны увидеть стартовую страницу Apache (Welcome/It works).
+
 ![alt text](image-8.png)
 
 Если доступ не работает:
