@@ -179,3 +179,4 @@ ping ozon.ru
 netstat -an
 ```
 
+й
