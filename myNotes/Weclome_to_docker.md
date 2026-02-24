@@ -50,7 +50,7 @@ docker rmi $(docker images -q)
 ```bash
 docker run -d -p 8088:80 --name welcome-to-docker docker/welcome-to-docker
 ```
-##  Получение готового образа Apache
+##  Получение готового образа Welcome to Docker
 
 Получить информацию по загруженному образу:
 ```bash
