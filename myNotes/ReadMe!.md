@@ -9,9 +9,12 @@
 set -euo pipefail
 
 # Настройки
-USER_HOME="${HOME:-/root}"
+```USER_HOME="${HOME:-/root}"```
+
 REPO_A="$USER_HOME/repoA"  # локальный путь к первому репозиторию
+
 REPO_B="$USER_HOME/repoB"  # локальный путь ко второму репозиторию
+
 LOG_FILE="${USER_HOME}/sync_repos.log"
 
 # Функции
