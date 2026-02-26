@@ -1,5 +1,5 @@
-## Bash-прикладной скрипт (Linux/WSL)
-# Назначение:
+# Bash-прикладной скрипт (Linux/WSL)
+## Назначение:
 - Переключается в корневую директорию пользователя (или другой корень, заданный переменной).
 - Выполняет git pull в указанном локальном репозитории (репозиторий A).
 - Копирует все содержимое репозитория A в локальный репозиторий B, исключая директорию .git и проверяя корректность путей.
@@ -11,7 +11,7 @@
 set -euo pipefail
 ```
 
-# Настройки
+## Настройки
 ```USER_HOME="${HOME:-/root}"```
 
 ```REPO_A="$USER_HOME/repoA"  # локальный путь к первому репозиторию```
@@ -20,7 +20,7 @@ set -euo pipefail
 
 ```LOG_FILE="${USER_HOME}/sync_repos.log"```
 
-# Функции
+## Функции
 ```
 log() {
   echo "$(date '+%Y-%m-%d %H:%M:%S') - $*"
@@ -32,14 +32,14 @@ die() {
   exit 1
 }
 ```
-# Валидация путей
+## Валидация путей
 ```
 for p in "$REPO_A" "$REPO_B"; do
   [ -d "$p" ] || die "Директория не найдена: $p"
   [ -d "$p/.git" ] || true  # позволяем репозитории без инициализации .git на момент проверки
 done
 ```
-# Проверка git-активности в REPO_A
+## Проверка git-активности в REPO_A
 ```
 if [ -d "$REPO_A/.git" ]; then
   pushd "$REPO_A" >/dev/null || die "Не удаётся перейти в $REPO_A"
@@ -55,7 +55,7 @@ else
   die "REPO_A не содержит .git: $REPO_A"
 fi
 ```
-# Копирование содержимого из REPO_A в REPO_B, исключая .git
+## Копирование содержимого из REPO_A в REPO_B, исключая .git
 ```
 log "Копирование содержимого из $REPO_A в $REPO_B (за исключением .git)..."
 rsync -a --delete \
@@ -72,12 +72,12 @@ exit 0
 - Запуск через терминал: ./sync_repos.sh
 - В случае необходимости можно запускать в автозагрузке через systemd/user или автозагрузку терминала.
 
-## PowerShell-скрипт (Windows, через Git Bash/Cygwin/PowerShell)
-# Назначение:
+# PowerShell-скрипт (Windows, через Git Bash/Cygwin/PowerShell)
+## Назначение:
 - Аналогично Bash-версии: обновление локального репозитория A, копирование содержимого в B, исключая папку .git.
 
 Файл: sync_repos.ps1
-# Требования: PowerShell 5+ (Windows) или PowerShell 7+ (跨 платформа)
+## Требования: PowerShell 5+ (Windows) или PowerShell 7+ (跨 платформа)
 ```
 param(
   [string]$RepoA = "$env:USERPROFILE\repoA",
@@ -93,7 +93,7 @@ function Write-Log {
   Add-Content -Path $LogFile -Value $line
 }
 ```
-# Проверка путей
+## Проверка путей
 ```
 foreach ($p in @($RepoA, $RepoB)) {
   if (-not (Test-Path $p)) {
@@ -102,7 +102,7 @@ foreach ($p in @($RepoA, $RepoB)) {
   }
 }
 ```
-# Обновление RepoA
+## Обновление RepoA
 ```
 if (Test-Path (Join-Path $RepoA ".git")) {
   Push-Location $RepoA
@@ -116,8 +116,8 @@ if (Test-Path (Join-Path $RepoA ".git")) {
   exit 1
 }
 ```
-## Копирование содержимого из RepoA в RepoB, исключая .git
-# Используем robocopy для копирования с заменой
+# Копирование содержимого из RepoA в RepoB, исключая .git
+## Используем robocopy для копирования с заменой
 ```
 $src = (Join-Path $RepoA "")
 $dst = (Join-Path $RepoB "")
@@ -128,12 +128,12 @@ $robocopyArgs = @(
   "/XD",".git"
 )
 ```
-# robocopy командой игнорирует скрытые системные файлы, но мы явно исключаем директорию .git
-# Робочий вариант: сначала копируем, потом удаляем лишнее
+## robocopy командой игнорирует скрытые системные файлы, но мы явно исключаем директорию .git
+## Робочий вариант: сначала копируем, потом удаляем лишнее
 ```
 Write-Log "Начало копирования содержимого из $RepoA в $RepoB, исключая .git"
 ```
-# В Windows путь с пробелами, используем двойные кавычки
+## В Windows путь с пробелами, используем двойные кавычки
 ```
 $cmd = "robocopy `"$src`" `"$dst`" /MIR /XD `.git`"
 $rc = & cmd /c $cmd
