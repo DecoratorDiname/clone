@@ -10,14 +10,12 @@ set -euo pipefail
 
 # Настройки
 ```USER_HOME="${HOME:-/root}"```
-
-REPO_A="$USER_HOME/repoA"  # локальный путь к первому репозиторию
-
-REPO_B="$USER_HOME/repoB"  # локальный путь ко второму репозиторию
-
-LOG_FILE="${USER_HOME}/sync_repos.log"
+```REPO_A="$USER_HOME/repoA"  # локальный путь к первому репозиторию```
+```REPO_B="$USER_HOME/repoB"  # локальный путь ко второму репозиторию```
+```LOG_FILE="${USER_HOME}/sync_repos.log"```
 
 # Функции
+```
 log() {
   echo "$(date '+%Y-%m-%d %H:%M:%S') - $*"
   echo "$(date '+%Y-%m-%d %H:%M:%S') - $*" >> "$LOG_FILE"
@@ -27,7 +25,7 @@ die() {
   log "FATAL: $*"
   exit 1
 }
-
+```
 # Валидация путей
 for p in "$REPO_A" "$REPO_B"; do
   [ -d "$p" ] || die "Директория не найдена: $p"
