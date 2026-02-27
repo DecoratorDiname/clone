@@ -47,20 +47,18 @@ docker rmi $(docker images -q)
 ```
 # Поиск готового образа cAdvisor
 ```bash
-docker run -d \
+docker run \
   --volume=/:/rootfs:ro \
-  --volume=/var/run:/var/run:ro \
+  --volume=/var/run:/var/run:rw \
   --volume=/sys:/sys:ro \
   --volume=/var/lib/docker/:/var/lib/docker:ro \
-  --volume=/dev/disk/:/dev/disk:ro \
-  --publish=8082:8080 \
+  --publish=8080:8080 \
   --detach=true \
+  --restart=always \
   --name=cadvisor \
-  --privileged \
-  --device=/dev/kmsg \
-  lagoudocker/cadvisor:v0.37.0
+  gcr.io/cadvisor/cadvisor:latest
 ```
-##  Получение готового образа Welcome to Docker
+##  Получение готового образа cAdvisor
 
 Получить информацию по загруженному образу:
 ```bash
@@ -100,18 +98,16 @@ docker rmi aa9694377d3b
 
 Можно снова установить и запустить cAdvisor (если его удаляли ранее)
 ```bash
-docker run -d \
+docker run \
   --volume=/:/rootfs:ro \
-  --volume=/var/run:/var/run:ro \
+  --volume=/var/run:/var/run:rw \
   --volume=/sys:/sys:ro \
   --volume=/var/lib/docker/:/var/lib/docker:ro \
-  --volume=/dev/disk/:/dev/disk:ro \
-  --publish=8082:8080 \
+  --publish=8080:8080 \
   --detach=true \
+  --restart=always \
   --name=cadvisor \
-  --privileged \
-  --device=/dev/kmsg \
-  lagoudocker/cadvisor:v0.37.0
+  gcr.io/cadvisor/cadvisor:latest
 ```
 Показать наличие загруженного файла образа
 ```bash
@@ -143,7 +139,6 @@ netstat -aon | findstr :8080
 ![alt text](image-40.png)
 
 ## Управление контейнером
-Мониторинг контейнеров
 Показать состояние всех контейнеров
 ```bash
 docker ps -a
