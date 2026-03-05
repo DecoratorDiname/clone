@@ -124,7 +124,7 @@ docker inspect sweet_gates
 ```bash
 docker stats
 ```
-![alt text](image-17.png)
+![alt text](image-88.png)
 
 Получить лог контейнера
 ```bash
