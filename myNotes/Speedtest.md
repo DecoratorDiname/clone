@@ -47,43 +47,36 @@ docker image prune -a
 docker rmi $(docker images -q)
 ```
 
-## Поиск готового образа Portainer
+## Поиск готового образа Speedtest
 ```bash
-docker run -d \
-  --name portainer \
-  -p 9000:9000 \
-  -p 9443:9443 \
-  -v /var/run/docker.sock:/var/run/docker.sock \
-  -v portainer_data:/data \
-  --restart unless-stopped \
-  portainer/portainer-ce:latest
+docker run -d -p 158:80 --name speedtest-server adolfintel/speedtest
 ```
 
-##  Получение готового образа Portainer
+##  Получение готового образа Speedtest
 
 Получить информацию по загруженному образу:
 ```bash
-docker inspect portainer
+docker inspect speedtest-server
 ```
 При необходимости остановить контейнер с таким именем:
 ```bash
-docker stop portainer
+docker stop speedtest-server
 ```
 Перезапустить контейнер по имени
 ```bash
-docker restart portainer
+docker restart speedtest-server
 ```
 Перезапустить контейнер по его id
 ```bash
-docker restart 3267f1869e0f
+docker restart 1f828fe83374
 ```
 Удалить выбранный контейнер по его имени
 ```bash
-docker rm portainer
+docker rm speedtest-server
 ```
-![alt text](image-73.png)
+![alt text](image-79.png)
 
-И можно удалить ещё и образ загруженного ранее Portainer:
+И можно удалить ещё и образ загруженного ранее Speedtest:
 
 Получить id образа
 ```bash
@@ -91,28 +84,21 @@ docker images
 ```
 Удалить по id нужный образ
 ```bash
-docker rmi 3267f1869e0f
+docker rmi 1f828fe83374
 ```
-![alt text](image-74.png)
+![alt text](image-80.png)
 
 ## Проверить работу контейнера
 
-Можно снова установить и запустить Portainer (если его удаляли ранее)
+Можно снова установить и запустить Speedtest (если его удаляли ранее)
 ```bash
-docker run -d \
-  --name portainer \
-  -p 9000:9000 \
-  -p 9443:9443 \
-  -v /var/run/docker.sock:/var/run/docker.sock \
-  -v portainer_data:/data \
-  --restart unless-stopped \
-  portainer/portainer-ce:latest
+docker run -d -p 158:80 --name speedtest-server adolfintel/speedtest
 ```
 Показать наличие загруженного файла образа
 ```bash
 docker images
 ```
-![alt text](image-72.png)
+![alt text](image-81.png)
 
 Показать только запущенные контейнеры
 ```bash
@@ -122,93 +108,20 @@ docker ps
 ```bash
 docker ps -a
 ```
-![alt text](image-71.png)
+![alt text](image-82.png)
 
-Проверить порт 9000 для Linux/Mac/WSL:
+Проверить порт 158 для Linux/Mac/WSL:
 ```bash
 # Проверьте, занят ли порт
-netstat -tuln | grep :9000
+netstat -tuln | grep :158
 ```
 Проверить порт 8040 для Windows:
 ```bash
-netstat -aon | findstr :9000
+netstat -aon | findstr :158
 ```
-Откройте: http://localhost:9000
+Откройте: http://localhost:158
 
-![alt text](image-75.png)
-
-Зарегистироваться:
-
-![alt text](image-78.png)
-
-## Управление контейнером
-Показать состояние всех контейнеров
-```bash
-docker ps -a
-```
-Показать подробности о контейнере
-```bash
-docker inspect portainer
-```
-Запустить мониторинг контейнеров
-```bash
-docker stats
-```
-![alt text](image-76.png)
-
-Получить лог контейнера
-```bash
-docker logs portainer
-```
-Показать логи в режиме ожидания
-```bash
-docker logs -f portainer
-```
-![alt text](image-77.png)
-
-Остановить контейнер
-```bash
-docker stop portainer
-```
-Снова запустить контейнер
-```bash
-docker start portainer
-```
-Перезапустить контейнер
-```bash
-docker restart portainer
-```
-Зайти в контейнер
-```bash
-docker exec -it portainer /bin/bash
-```
-или
-```bash
-docker exec -it portainer bash
-```
-или
-```bash
-docker exec -it portainer /bin/sh
-```
-или
-```bash
-docker exec -it portainer sh
-```
-внутри контейнера можно повыполнять некоторые команды Linux Получить информацию об ОС контейнера
-```bash
-uname -a
-```
-
-![alt text](image-51.png)
-
-Получить больше информации об ОС контейнера
-```bash
-cat /etc/os-release
-```
-
-![alt text](image-52.png)
-
-Выйти из контейнера можно командой exit
+![alt text](image-83.png)
 
 Остановить все запущенные контейнеры
 ```bash
