@@ -180,36 +180,19 @@ cat /etc/os-release
 
 Установить Fastfetch
 ```bash
-apt update && apt install -y fastfetch
+apt update && apt install neofetch
 ```
 ```bash
-fastfetch
+neofetch
 ```
 
-![alt text](image-21.png)
-
-Можно установить ещё несколько приложений внутри Docker-контейнера:
-```bash
-apt update && apt install -y fastfetch htop cmatrix hollywood mc micro
-```
-и позапускать их отдельно друг от друга:
-```bash
-htop
-```
-
-![alt text](image-23.png)
+![alt text](image-86.png)
 
 ```bash
-cmatrix
+curl --version
 ```
 
-![alt text](image-22.png)
-
-```bash
-hollywood
-```
-
-![alt text](image-24.png)
+![alt text](image-87.png)
 
 Выйти из контейнера можно командой exit
 
