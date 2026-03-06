@@ -57,6 +57,8 @@ docker run -d --name jira -p 2990:8080 atlassian/jira-software:latest
 docker run -d --name jira -p 2990:8080 addono/jira-software-standalone
 ```
 
+![alt text](image-102.png)
+
 внутри контейнера можно повыполнять некоторые команды Linux Получить информацию об ОС контейнера
 
 ## Открыть лог в Jira
