@@ -217,6 +217,20 @@ fastfetch
 
 ![alt text](image-21.png)
 
+Установить тектовый редактор командной строки Micro:
+```bash
+apt update && apt install micro
+```
+
+![alt text](image-103.png)
+
+Открыть файл index.html для редактирования содержимого
+```bash
+micro /usr/local/apache2/htdocs/index.html
+```
+
+![alt text](image-104.png)
+
 Можно установить ещё несколько приложений внутри Docker-контейнера:
 ```bash
 apt update && apt install -y fastfetch htop cmatrix hollywood mc micro
