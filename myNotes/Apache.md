@@ -256,6 +256,27 @@ hollywood
 
 Выйти из контейнера можно командой exit
 
+## Apache со стандартной приветственной страницей контейнера
+Создайте папку с HTML файлом в папке Docker-проектов
+```bash
+mkdir my-site && cd my-site && touch index.html
+```
+
+![alt text](image-109.png)
+
+```bash
+echo '<h1>Hello Docker!</h1>' > index.html
+```
+
+![alt text](image-110.png)
+
+Находясь в папке проекта my-site, выполните загрузку образа, создание контейнера с сервером и его запуск:
+```bash
+docker run -d --name my-apache -p 8081:80 -v "${PWD}:/usr/local/apache2/htdocs" httpd:alpine
+```
+
+![alt text](image-116.png)
+
 Остановить все запущенные контейнеры
 ```bash
 docker stop $(docker ps -q)
